@@ -1,0 +1,54 @@
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  annotations:
+    opendatahub.io/hardware-profile-name: {{ .Values.hardwareProfileName }}
+    opendatahub.io/hardware-profile-namespace: redhat-ods-applications
+    {{- if .Values.hardwareProfileResourceVersion }}
+    opendatahub.io/hardware-profile-resource-version: {{ .Values.hardwareProfileResourceVersion | quote }}
+    {{- end }}
+    opendatahub.io/model-type: generative
+    openshift.io/description: ""
+    openshift.io/display-name: {{ .Values.modelname }}
+    security.opendatahub.io/enable-auth: "true"
+    serving.kserve.io/deploymentMode: RawDeployment
+    serving.kserve.io/stop: "false"
+  finalizers:
+  - inferenceservice.finalizers
+  - odh.inferenceservice.finalizers
+  labels:
+    networking.kserve.io/visibility: exposed
+    opendatahub.io/dashboard: "true"
+  name: {{ .Values.modelname }}
+  namespace: {{ .Values.namespace }}
+spec:
+  predictor:
+    automountServiceAccountToken: false
+    deploymentStrategy:
+      type: RollingUpdate
+    maxReplicas: 1
+    minReplicas: 1
+    model:
+      modelFormat:
+        name: vLLM
+      name: {{ .Values.modelname | quote }}
+      resources:
+        limits:
+          cpu: {{ .Values.resources.limits.cpu }}
+          memory: {{ .Values.resources.limits.memory }}
+          nvidia.com/gpu: {{ index .Values.resources.limits "nvidia.com/gpu" }}
+        requests:
+          cpu: {{ .Values.resources.requests.cpu }}
+          memory: {{ .Values.resources.requests.memory }}
+          nvidia.com/gpu: {{ index .Values.resources.requests "nvidia.com/gpu" }}
+      runtime: {{ .Values.runtime }}
+      storageUri: {{ .Values.uri }}
+    tolerations:
+    {{- range .Values.tolerations }}
+      - key: {{ .key }}
+        operator: {{ .operator }}
+        effect: {{ .effect }}
+        {{- if .value }}
+        value: {{ .value | quote }}
+        {{- end }}
+    {{- end }}

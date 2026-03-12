@@ -1,0 +1,4 @@
+namespace: minio
+username: minio
+password: minio123
+storageSize: 20Gi

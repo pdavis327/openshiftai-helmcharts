@@ -1,0 +1,32 @@
+apiVersion: infrastructure.opendatahub.io/v1alpha1
+kind: HardwareProfile
+metadata:
+  annotations:
+    opendatahub.io/dashboard-feature-visibility: '[]'
+    opendatahub.io/disabled: 'false'
+    opendatahub.io/display-name: {{ .Values.profileName }}
+  name: {{ .Values.profileName }}
+  namespace: redhat-ods-applications
+spec:
+  identifiers:
+    {{- range .Values.hardwareProfile.identifiers }}
+    - resourceType: {{ .resourceType }}
+      identifier: {{ .identifier }}
+      displayName: {{ .displayName }}
+      minCount: {{ .minCount | quote }}
+      maxCount: {{ .maxCount | quote }}
+      defaultCount: {{ .defaultCount | quote }}
+    {{- end }}
+  scheduling:
+    type: Node
+    node:
+      nodeSelector: {}
+      tolerations:
+        {{- range .Values.hardwareProfile.scheduling.node.tolerations }}
+        - key: {{ .key }}
+          operator: {{ .operator }}
+          effect: {{ .effect }}
+          {{- if .value }}
+          value: {{ .value | quote }}
+          {{- end }}
+        {{- end }}
