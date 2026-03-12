@@ -18,8 +18,6 @@ metadata:
   name: minio-secret
   namespace: {{ .Values.namespace }}
 stringData:
-  # change the username and password to your own values.
-  # ensure that the user is at least 3 characters long and the password at least 8
   minio_root_user: {{ .Values.username}}
   minio_root_password: {{ .Values.password}}
 ---
@@ -91,7 +89,7 @@ spec:
               mountPath: /data
               subPath: minio
           terminationMessagePolicy: File
-          image: quay.io/minio/minio:1.16.0
+          image: 'quay.io/minio/minio:1.16.0'
           args:
             - server
             - /data
