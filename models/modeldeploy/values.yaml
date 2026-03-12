@@ -7,6 +7,10 @@ uri: "oci://quay.io/myorg/my-model:1.0"  # Model storage URI (Quay OCI image)
 runtime: my-model
 
 hardwareProfileName: nvidia-l4-small
+# Optional: set to the HardwareProfile's resourceVersion so the controller pins to that version.
+# Get with: kubectl get hardwareprofile <hardwareProfileName> -n redhat-ods-applications -o jsonpath='{.metadata.resourceVersion}'
+# If unset, the annotation is omitted (controller may still work; setting it can avoid stale profile issues).
+hardwareProfileResourceVersion: ""
 
 resources:
   limits:
