@@ -1,4 +1,5 @@
 namespace: minio
+image: quay.io/minio/minio:latest
 username: minio
 password: minio123
 storageSize: 20Gi

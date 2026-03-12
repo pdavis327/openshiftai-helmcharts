@@ -89,7 +89,7 @@ spec:
               mountPath: /data
               subPath: minio
           terminationMessagePolicy: File
-          image: 'quay.io/minio/minio:1.16.0'
+          image: {{ .Values.image | quote }}
           args:
             - server
             - /data

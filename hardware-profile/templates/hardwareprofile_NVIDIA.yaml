@@ -5,7 +5,7 @@ metadata:
     opendatahub.io/dashboard-feature-visibility: '[]'
     opendatahub.io/disabled: 'false'
     opendatahub.io/display-name: {{ .Values.profileName }}
-  name: {{ .Values.profileName }}
+  name: {{ .Values.profileName | lower }}
   namespace: redhat-ods-applications
 spec:
   identifiers:
