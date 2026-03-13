@@ -33,23 +33,5 @@ spec:
       modelFormat:
         name: vLLM
       name: ""
-      resources:
-        limits:
-          cpu: {{ .Values.resources.limits.cpu | int }}
-          memory: {{ .Values.resources.limits.memory }}
-          nvidia.com/gpu: {{ index .Values.resources.limits "nvidia.com/gpu" | int }}
-        requests:
-          cpu: {{ .Values.resources.requests.cpu | int }}
-          memory: {{ .Values.resources.requests.memory }}
-          nvidia.com/gpu: {{ index .Values.resources.requests "nvidia.com/gpu" | int }}
       runtime: {{ .Values.runtime }}
       storageUri: {{ .Values.uri }}
-    tolerations:
-    {{- range .Values.tolerations }}
-      - key: {{ .key }}
-        operator: {{ .operator }}
-        effect: {{ .effect }}
-        {{- if .value }}
-        value: {{ .value | quote }}
-        {{- end }}
-    {{- end }}

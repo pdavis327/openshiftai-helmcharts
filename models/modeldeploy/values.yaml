@@ -6,23 +6,5 @@ uri: "oci://quay.io/myorg/my-model:1.0"  # Model storage URI (Quay OCI image)
 # ServingRuntime name this InferenceService uses (default: same as modelname)
 runtime: my-model
 
+# Resources and tolerations are filled by the controller from this HardwareProfile.
 hardwareProfileName: nvidia-l4-small
-
-resources:
-  limits:
-    cpu: 3
-    memory: 10Gi
-    nvidia.com/gpu: 1
-  requests:
-    cpu: 3
-    memory: 10Gi
-    nvidia.com/gpu: 1
-
-# Order must match cluster (nvidia.com/gpu first) to avoid Argo CD toleration-order diff
-tolerations:
-  - key: nvidia.com/gpu
-    operator: Exists
-    effect: NoSchedule
-  - key: smallgpu
-    operator: Exists
-    effect: NoSchedule
