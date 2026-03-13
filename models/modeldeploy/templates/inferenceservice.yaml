@@ -33,5 +33,3 @@ spec:
       name: ""
       runtime: {{ .Values.runtime }}
       storageUri: {{ .Values.uri }}
-    minReplicas: {{ .Values.minReplicas }}
-    maxReplicas: {{ .Values.maxReplicas }}
