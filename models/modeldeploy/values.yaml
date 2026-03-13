@@ -10,13 +10,13 @@ hardwareProfileName: nvidia-l4-small
 
 resources:
   limits:
-    cpu: "3"
-    memory: "10Gi"
-    nvidia.com/gpu: "1"
+    cpu: 3
+    memory: 10Gi
+    nvidia.com/gpu: 1
   requests:
-    cpu: "3"
-    memory: "10Gi"
-    nvidia.com/gpu: "1"
+    cpu: 3
+    memory: 10Gi
+    nvidia.com/gpu: 1
 
 # Order must match cluster (nvidia.com/gpu first) to avoid Argo CD toleration-order diff
 tolerations:
