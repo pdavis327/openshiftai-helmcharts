@@ -8,3 +8,7 @@ runtime: my-model
 
 # Resources and tolerations are filled by the controller from this HardwareProfile.
 hardwareProfileName: nvidia-l4-small
+
+# Scale: set both to 0 to scale the model to zero (saves resources). Change in Git and sync to apply.
+minReplicas: 1
+maxReplicas: 1

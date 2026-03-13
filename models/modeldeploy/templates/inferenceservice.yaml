@@ -27,8 +27,8 @@ spec:
       rollingUpdate:
         maxSurge: 0
         maxUnavailable: 1
-    maxReplicas: 1
-    minReplicas: 1
+    maxReplicas: {{ .Values.maxReplicas }}
+    minReplicas: {{ .Values.minReplicas }}
     model:
       modelFormat:
         name: vLLM
