@@ -35,13 +35,13 @@ spec:
       name: ""
       resources:
         limits:
-          cpu: {{ .Values.resources.limits.cpu }}
+          cpu: {{ .Values.resources.limits.cpu | int }}
           memory: {{ .Values.resources.limits.memory }}
-          nvidia.com/gpu: {{ index .Values.resources.limits "nvidia.com/gpu" }}
+          nvidia.com/gpu: {{ index .Values.resources.limits "nvidia.com/gpu" | int }}
         requests:
-          cpu: {{ .Values.resources.requests.cpu }}
+          cpu: {{ .Values.resources.requests.cpu | int }}
           memory: {{ .Values.resources.requests.memory }}
-          nvidia.com/gpu: {{ index .Values.resources.requests "nvidia.com/gpu" }}
+          nvidia.com/gpu: {{ index .Values.resources.requests "nvidia.com/gpu" | int }}
       runtime: {{ .Values.runtime }}
       storageUri: {{ .Values.uri }}
     tolerations:

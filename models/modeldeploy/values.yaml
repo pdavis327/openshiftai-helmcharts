@@ -1,6 +1,6 @@
 # Required: set these for your model and target cluster
 modelname: my-model                  # Name of the InferenceService and ServingRuntime
-namespace: my-namespace              # Namespace to deploy into (e.g. redhat-ods-applications or your project)
+namespace: my-namespace              # Namespace to deploy into
 uri: "oci://quay.io/myorg/my-model:1.0"  # Model storage URI (Quay OCI image)
 
 # ServingRuntime name this InferenceService uses (default: same as modelname)
@@ -18,10 +18,11 @@ resources:
     memory: "10Gi"
     nvidia.com/gpu: "1"
 
+# Order must match cluster (nvidia.com/gpu first) to avoid Argo CD toleration-order diff
 tolerations:
-  - key: smallgpu
+  - key: nvidia.com/gpu
     operator: Exists
     effect: NoSchedule
-  - key: nvidia.com/gpu
+  - key: smallgpu
     operator: Exists
     effect: NoSchedule
