@@ -13,9 +13,9 @@ spec:
     - resourceType: {{ .resourceType }}
       identifier: {{ .identifier }}
       displayName: {{ .displayName }}
-      minCount: {{ .minCount | quote }}
-      maxCount: {{ .maxCount | quote }}
-      defaultCount: {{ .defaultCount | quote }}
+      minCount: {{ .minCount }}
+      maxCount: {{ .maxCount }}
+      defaultCount: {{ .defaultCount }}
     {{- end }}
   scheduling:
     type: Node
