@@ -1,27 +1,14 @@
 # Required: set these for your model and target cluster
 modelname: my-model                  # Name of the InferenceService and ServingRuntime
-namespace: my-namespace              # Namespace to deploy into (e.g. redhat-ods-applications or your project)
+namespace: my-namespace              # Namespace to deploy into
 uri: "oci://quay.io/myorg/my-model:1.0"  # Model storage URI (Quay OCI image)
 
 # ServingRuntime name this InferenceService uses (default: same as modelname)
 runtime: my-model
 
+# Resources and tolerations are filled by the controller from this HardwareProfile.
 hardwareProfileName: nvidia-l4-small
 
-resources:
-  limits:
-    cpu: "3"
-    memory: "10Gi"
-    nvidia.com/gpu: "1"
-  requests:
-    cpu: "3"
-    memory: "10Gi"
-    nvidia.com/gpu: "1"
-
-tolerations:
-  - key: smallgpu
-    operator: Exists
-    effect: NoSchedule
-  - key: nvidia.com/gpu
-    operator: Exists
-    effect: NoSchedule
+# Scale: set both to 0 to scale the model to zero (saves resources). Change in Git and sync to apply.
+minReplicas: 1
+maxReplicas: 1

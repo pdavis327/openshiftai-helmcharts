@@ -24,29 +24,14 @@ spec:
     automountServiceAccountToken: false
     deploymentStrategy:
       type: RollingUpdate
-    maxReplicas: 1
-    minReplicas: 1
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
+    maxReplicas: {{ .Values.maxReplicas }}
+    minReplicas: {{ .Values.minReplicas }}
     model:
       modelFormat:
         name: vLLM
       name: ""
-      resources:
-        limits:
-          cpu: {{ .Values.resources.limits.cpu }}
-          memory: {{ .Values.resources.limits.memory }}
-          nvidia.com/gpu: {{ index .Values.resources.limits "nvidia.com/gpu" }}
-        requests:
-          cpu: {{ .Values.resources.requests.cpu }}
-          memory: {{ .Values.resources.requests.memory }}
-          nvidia.com/gpu: {{ index .Values.resources.requests "nvidia.com/gpu" }}
       runtime: {{ .Values.runtime }}
       storageUri: {{ .Values.uri }}
-    tolerations:
-    {{- range .Values.tolerations }}
-      - key: {{ .key }}
-        operator: {{ .operator }}
-        effect: {{ .effect }}
-        {{- if .value }}
-        value: {{ .value | quote }}
-        {{- end }}
-    {{- end }}

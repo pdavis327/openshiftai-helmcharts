@@ -6,9 +6,9 @@ hardwareProfile:
     - resourceType: CPU
       identifier: cpu
       displayName: CPU
-      minCount: "8"
-      maxCount: "16"
-      defaultCount: "12"
+      minCount: 8
+      maxCount: 16
+      defaultCount: 12
     - resourceType: Memory
       identifier: memory
       displayName: Memory
