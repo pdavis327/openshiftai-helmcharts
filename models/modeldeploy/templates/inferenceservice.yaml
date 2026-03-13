@@ -2,7 +2,7 @@ apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
 metadata:
   annotations:
-    # argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "1"
     opendatahub.io/connections: {{ .Values.modelname | quote }}
     opendatahub.io/hardware-profile-name: {{ .Values.hardwareProfileName }}
     opendatahub.io/hardware-profile-namespace: redhat-ods-applications
