@@ -11,7 +11,7 @@ metadata:
 spec:
   grpc:
     port: 9090
-  oauthProxy:
+  kubeRBACProxy:
     port: 8443
     routePort: 443
     serviceRoute: enabled
