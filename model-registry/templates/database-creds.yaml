@@ -16,7 +16,7 @@ type: Opaque
 kind: Secret
 apiVersion: v1
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ .Release.Name }}-mysql
   namespace: {{ .Release.Namespace }}
   annotations:
     template.openshift.io/expose-database_name: '{.data[''database-name'']}'

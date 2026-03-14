@@ -13,7 +13,7 @@ spec:
     port: 9090
   mysql:
     database: {{ .Values.mysql.database }}
-    host: {{ .Release.Name }}.{{ .Release.Namespace }}.svc.cluster.local
+    host: {{ .Release.Name }}-mysql.{{ .Release.Namespace }}.svc.cluster.local
     passwordSecret:
       key: database-password
       name: {{ .Release.Name }}-db
