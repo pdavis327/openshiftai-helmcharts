@@ -11,6 +11,10 @@ metadata:
 spec:
   grpc:
     port: 9090
+  oauthProxy:
+    port: 8443
+    routePort: 443
+    serviceRoute: enabled
   mysql:
     database: {{ .Values.mysql.database }}
     host: {{ .Release.Name }}-mysql.{{ .Release.Namespace }}.svc.cluster.local
@@ -20,10 +24,6 @@ spec:
     port: 3306
     skipDBCreation: false
     username: {{ .Values.mysql.user }}
-  oauthProxy:
-    port: 8443
-    routePort: 443
-    serviceRoute: enabled
   rest:
     port: 8080
     serviceRoute: disabled
