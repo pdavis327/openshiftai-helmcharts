@@ -3,3 +3,5 @@ mysql:
   password: 'admin123'
   database: 'model_registry'
   root_password: 'admin123'
+
+mysqlImage: "mysql:8.3.0"
