@@ -3,9 +3,7 @@ kind: InferenceService
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
-    {{- with .Values.connections }}
-    opendatahub.io/connections: {{ . | quote }}
-    {{- end }}
+    opendatahub.io/connections: {{ .Values.modelname | quote }}
     opendatahub.io/hardware-profile-name: {{ .Values.hardwareProfileName }}
     opendatahub.io/hardware-profile-namespace: redhat-ods-applications
     opendatahub.io/model-type: generative
