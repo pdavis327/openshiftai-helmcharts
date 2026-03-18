@@ -9,4 +9,9 @@ runtime: my-model
 # Resources and tolerations are filled by the controller from this HardwareProfile.
 hardwareProfileName: nvidia-l4-small
 
+# Optional: data-connection Secret name(s) for private storage (S3, registry creds, etc.).
+# Comma-separated if multiple. Omit for public OCI models (e.g. oci://quay.io/...): the
+# admission webhook requires any listed name to exist as a Secret in the target namespace.
+# connections: "my-s3-connection"
+
 vllmImage: registry.redhat.io/rhaiis/vllm-cuda-rhel9@sha256:ec799bb5eeb7e25b4b25a8917ab5161da6b6f1ab830cbba61bba371cffb0c34d
