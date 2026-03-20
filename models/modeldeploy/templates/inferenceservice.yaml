@@ -9,7 +9,7 @@ metadata:
     opendatahub.io/model-type: generative
     openshift.io/description: ""
     openshift.io/display-name: {{ .Values.modelname }}
-    security.opendatahub.io/enable-auth: "true"
+    security.opendatahub.io/enable-auth: {{ toString .Values.enableAuth | quote }}
     serving.kserve.io/deploymentMode: RawDeployment
   finalizers:
   - inferenceservice.finalizers
