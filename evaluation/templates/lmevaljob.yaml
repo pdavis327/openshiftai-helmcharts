@@ -4,5 +4,7 @@ metadata:
   name: lmevaljob-with-online-code-exec
   namespace: {{ .Values.namespace }}
 spec:
+# ...
   allowOnline: true
   allowCodeExecution: true
+# ...
